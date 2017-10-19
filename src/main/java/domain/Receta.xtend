@@ -18,7 +18,7 @@ class Receta {
 	}
 	
 	def esValida(){
-		nombre.length > 1 && descripcion.length > 1 && ingredientes.size > 1
+		nombre.length > 1 && descripcion.length > 1 //&& ingredientes.size > 1
 	}
 
 }

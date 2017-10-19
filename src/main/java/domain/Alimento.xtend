@@ -10,15 +10,17 @@ class Alimento {
 	double cantidad
 	String nombre
 	UnidadMedida unidad
-
-//	int peso ?? vale la pena?
-	new(String unNombre, double unaCantidad, UnidadMedida unaUnidad) {
+	Categoria categoria
+	
+	new(String unNombre, double unaCantidad, UnidadMedida unaUnidad, Categoria unaCategoria){
 		nombre = unNombre
 		cantidad = unaCantidad
 		unidad = unaUnidad
+		categoria = unaCategoria
 	}
-
+	
 	def esValido() {
 		cantidad !== 0 && unidad !== null && nombre.length > 1
 	}
+
 }

@@ -36,9 +36,9 @@ class RepositorioAlimento {
 		}
 	}
 
-	def search(String unNombre) {
+	def search(String unNombre, Double unaCantidad) {
 		alimentos.filter [ alimento |
-			this.match(unNombre, alimento.nombre)
+			this.match(unNombre, alimento.nombre) && this.matchNaN(unaCantidad, alimento.cantidad)
 		].toList
 	}
 
@@ -50,5 +50,20 @@ class RepositorioAlimento {
 			return false
 		}
 		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+	}
+
+	def matchNaN(double expectedValue, double realValue) {
+		if (expectedValue.identityEquals(null)) {
+			return true
+		}
+		if (realValue.identityEquals(null)) {
+			return false
+		}
+		
+		if (Double.isNaN(expectedValue)) {
+			return true
+		} else {
+			realValue === expectedValue
+		}
 	}
 }
