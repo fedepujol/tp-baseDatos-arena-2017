@@ -2,7 +2,9 @@ package domain
 
 import java.util.ArrayList
 import java.util.Collection
+import org.eclipse.xtend.lib.annotations.Accessors
 
+@Accessors
 class RepositorioReceta {
 	int id
 	Collection<Receta> recetas = new ArrayList<Receta>

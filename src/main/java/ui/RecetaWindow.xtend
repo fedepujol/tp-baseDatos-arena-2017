@@ -1,12 +1,12 @@
 package ui
 
 import domain.Receta
-import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.bindings.ObservableProperty
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.NumericField
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.widgets.Selector
+import org.uqbar.arena.widgets.tables.Column
+import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
 import viewModel.RecetaModel
@@ -20,30 +20,38 @@ class RecetaWindow extends Dialog<RecetaModel> {
 	}
 
 	override createContents(Panel mainPanel) {
-		taskDescription = "Ingrese los parametros"
+		taskDescription = "Recetas cargadas en el sistema"
 
 		super.createMainTemplate(mainPanel)
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
-		val firstPanel = new Panel(mainPanel) => [
-			layout = new ColumnLayout(2)
+		val firstPanel = new Panel(mainPanel)
+
+		val gridProcesos = new Table<Receta>(firstPanel, typeof(Receta)) => [
+			numberVisibleRows = 10
+			items <=> "recetas"
+			value <=> "recetaSeleccionada"
 		]
-		
-		new Label(firstPanel).text = "Descripcion del Alimento:"
-		new TextBox(firstPanel) =>[
-			width = 100
-			value <=> "alimento.nombre"
+
+		new Column<Receta>(gridProcesos) => [
+			title = "Nombre"
+			bindContentsToProperty("nombre")
+			fixedSize = 150
 		]
-		
-		new Label(firstPanel).text = "Categoria:"
-		
-		new Label(firstPanel).text = "Cantidad:"
-		new NumericField(firstPanel) => [
-			width = 100
-			value <=> "alimento.cantidad"
+
+		new Column<Receta>(gridProcesos) => [
+			title = "Descripcion"
+			bindContentsToProperty("descripcion")
+			fixedSize = 120
 		]
-		
+
+		new Column<Receta>(gridProcesos) => [
+			title = "Ingredientes"
+			bindContentsToProperty("ingredientes.values")
+			fixedSize = 100
+		]
+
 	}
 
 	override protected addActions(Panel actionsPanel) {
