@@ -25,7 +25,7 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 	new(WindowOwner parent) {
 		super(parent, new HeladeraModel)
 		title = "Heladera v0.1"
-		taskDescription = "Busqueda de alimentos"
+		taskDescription = "Pantalla Inicial"
 
 		modelObject.search
 	}
@@ -35,36 +35,36 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 			layout = new ColumnLayout(2)
 		]
 
-		new Label(firstPanel) => [
-			text = "Ingrese un alimento"
-		]
-
-		new TextBox(firstPanel) => [
-			width = 100
-			value <=> "example.nombre"
-		]
-
-		new Label(firstPanel) => [
-			text = "Ingrese una cantidad"
-		]
-
-		new NumericField(firstPanel) => [
-			width = 100
-			value <=> "example.cantidad"
-			
-		]
-		
-		new Button(firstPanel) => [
-			caption = "Buscar"
-			onClick([|modelObject.search])
-			setAsDefault
-			disableOnError
-		]
-
-		new Button(firstPanel) => [
-			caption = "Limpiar"
-			onClick([|modelObject.clear])
-		]		
+//		new Label(firstPanel) => [
+//			text = "Ingrese un alimento"
+//		]
+//
+//		new TextBox(firstPanel) => [
+//			width = 100
+//			value <=> "example.nombre"
+//		]
+//
+//		new Label(firstPanel) => [
+//			text = "Ingrese una cantidad"
+//		]
+//
+//		new NumericField(firstPanel) => [
+//			width = 100
+//			value <=> "example.cantidad"
+//			
+//		]
+//		
+//		new Button(firstPanel) => [
+//			caption = "Buscar"
+//			onClick([|modelObject.search])
+//			setAsDefault
+//			disableOnError
+//		]
+//
+//		new Button(firstPanel) => [
+//			caption = "Limpiar"
+//			onClick([|modelObject.clear])
+//		]		
 
 		val secondPanel = new Panel(mainPanel) => [
 			layout = new HorizontalLayout
@@ -72,30 +72,30 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 		
 		val gridPanel = new Panel(secondPanel)
 		
-		val gridProcesos = new Table<Alimento>(gridPanel, typeof(Alimento)) => [
-			numberVisibleRows = 10
-			items <=> "alimentos"
-			value <=> "alimentoSeleccionado"
-		]
-
-		new Column<Alimento>(gridProcesos) => [
-			title = "Alimento"
-			bindContentsToProperty("nombre")
-			fixedSize = 150
-		]
-
-		new Column<Alimento>(gridProcesos) => [
-			title = "Cantidad"
-			bindContentsToProperty("cantidad")
-			fixedSize = 120
-		]
-
-		new Column<Alimento>(gridProcesos) => [
-			title = "Unidad"
-			bindContentsToProperty("unidad.descripcion")
-			fixedSize = 100
-		]
-		
+//		val gridProcesos = new Table<Alimento>(gridPanel, typeof(Alimento)) => [
+//			numberVisibleRows = 10
+//			items <=> "alimentos"
+//			value <=> "alimentoSeleccionado"
+//		]
+//
+//		new Column<Alimento>(gridProcesos) => [
+//			title = "Alimento"
+//			bindContentsToProperty("nombre")
+//			fixedSize = 150
+//		]
+//
+//		new Column<Alimento>(gridProcesos) => [
+//			title = "Cantidad"
+//			bindContentsToProperty("cantidad")
+//			fixedSize = 120
+//		]
+//
+//		new Column<Alimento>(gridProcesos) => [
+//			title = "Unidad"
+//			bindContentsToProperty("unidad.descripcion")
+//			fixedSize = 100
+//		]
+//		
 		val buttonPanel = new Panel(secondPanel) => [
 			layout = new ColumnLayout(2)
 		]
@@ -112,14 +112,14 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 	}
 
 	override protected addActions(Panel actionsPanel) {
-		new Button(actionsPanel) => [
-			caption = "Aceptar"
-			onClick([|this.close()])
-		]
-		new Button(actionsPanel) => [
-			caption = "Cancelar"
-			onClick([|this.close()])
-		]
+//		new Button(actionsPanel) => [
+//			caption = "Aceptar"
+//			onClick([|this.close()])
+//		]
+//		new Button(actionsPanel) => [
+//			caption = "Cancelar"
+//			onClick([|this.close()])
+//		]
 	}
 	
 	def editarReceta(Receta unaReceta){

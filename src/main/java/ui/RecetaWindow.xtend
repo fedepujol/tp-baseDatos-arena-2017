@@ -12,6 +12,9 @@ import org.uqbar.arena.windows.WindowOwner
 import viewModel.RecetaModel
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.layout.ColumnLayout
+import org.uqbar.arena.widgets.TextBox
 
 class RecetaWindow extends Dialog<RecetaModel> {
 
@@ -26,9 +29,36 @@ class RecetaWindow extends Dialog<RecetaModel> {
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
-		val firstPanel = new Panel(mainPanel)
+		val firstPanel = new Panel(mainPanel) => [
+			layout = new ColumnLayout(2)
+		]
+		
+		new Label(firstPanel) => [
+			text = "Ingrese un alimento"
+		]
+	
+		new TextBox(firstPanel) => [
+			width = 100
+			//value <=> "example.nombre"
+		]
+	
+		new Button(firstPanel) => [
+			caption = "Buscar"
+			//onClick([|modelObject.search])
+			setAsDefault
+			disableOnError
+		]
 
-		val gridProcesos = new Table<Receta>(firstPanel, typeof(Receta)) => [
+		new Button(firstPanel) => [
+			caption = "Limpiar"
+			//onClick([|modelObject.clear])
+		]		
+		
+	
+		val secondPanel = new Panel(mainPanel) 
+
+		
+		val gridProcesos = new Table<Receta>(secondPanel, typeof(Receta)) => [
 			numberVisibleRows = 10
 			items <=> "recetas"
 			value <=> "recetaSeleccionada"
