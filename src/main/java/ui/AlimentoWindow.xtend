@@ -44,7 +44,7 @@ class AlimentoWindow extends Dialog<AlimentoModel> {
 		new Label(firstPanel).text = "Categoria:"
 		new Selector<Categoria>(firstPanel) => [
 			width = 100
-			value <=> "categoriaSeleccionada"
+			value <=> "alimento.categoria"
 			val itemProperties = items <=> "categorias"
 			itemProperties.adapter = new PropertyAdapter(typeof(Categoria), "nombre")
 		]
@@ -64,7 +64,7 @@ class AlimentoWindow extends Dialog<AlimentoModel> {
 		new Label(firstPanel).text = "Unidad"
 		new Selector<UnidadMedida>(firstPanel) => [
 			width = 100
-			value <=> "unidadSeleccionada"
+			value <=> "alimento.unidad"
 			val itemProperties = items <=> "unidades"
 			itemProperties.adapter = new PropertyAdapter(typeof(UnidadMedida), "descripcion")
 		]
@@ -72,7 +72,7 @@ class AlimentoWindow extends Dialog<AlimentoModel> {
 		new Label(firstPanel).text = "Sector"
 		new Selector<Sector>(firstPanel) => [
 			width = 100
-			value <=> "sectorSeleccionado"
+			value <=> "alimento.sector"
 			val itemProperties = items <=> "sectores"
 			itemProperties.adapter = new PropertyAdapter(typeof(UnidadMedida), "descripcion")
 		]
@@ -89,8 +89,15 @@ class AlimentoWindow extends Dialog<AlimentoModel> {
 			caption = "Aceptar"
 			onClick([|this.accept])
 			setAsDefault
+			disableOnError
 		]
 
 	}
+	
+	override executeTask() {
+		modelObject.crear()
+		super.executeTask()
+	}
+
 
 }

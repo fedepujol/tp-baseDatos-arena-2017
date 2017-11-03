@@ -2,17 +2,18 @@ package runnable
 
 import domain.Alimento
 import domain.Categoria
+import domain.Ingrediente
 import domain.Receta
 import domain.RepositorioAlimento
 import domain.RepositorioCategoria
 import domain.RepositorioReceta
-import domain.RepositorioUnidadMedida
-import domain.UnidadMedida
-import java.util.HashMap
-import java.util.Map
-import org.uqbar.arena.bootstrap.CollectionBasedBootstrap
-import domain.Sector
 import domain.RepositorioSector
+import domain.RepositorioUnidadMedida
+import domain.Sector
+import domain.UnidadMedida
+import java.util.ArrayList
+import java.util.Collection
+import org.uqbar.arena.bootstrap.CollectionBasedBootstrap
 
 class HeladeraBootstrap extends CollectionBasedBootstrap {
 
@@ -30,8 +31,10 @@ class HeladeraBootstrap extends CollectionBasedBootstrap {
 		val litro = new UnidadMedida("Litro")
 		val unidadSola = new UnidadMedida("Unidad")
 
-		val Map<Alimento, Double> ingrediente = new HashMap<Alimento, Double>
-		ingrediente.put(new Alimento("Pollo", 1, kilo, new Categoria("Carnes"), new Sector("Sector Carnes"), 2), 0.150)
+		val Collection<Ingrediente> ingrediente = new ArrayList<Ingrediente>
+		ingrediente.addAll(new Ingrediente(new Alimento("Pollo", 1.0, kilo, new Categoria("Carnes"), new Sector("Sector Carnes"), 2.2), 0.150),
+			new Ingrediente(new Alimento("Tomate", 2.0, unidadSola, new Categoria("Verduras"), new Sector("Sector Frutas / Verduras"), 2.3), 0.500)
+		)
 
 		repoRecetas => [
 			create(new Receta("Receta 1", "Descripcion 1", ingrediente))
@@ -59,9 +62,9 @@ class HeladeraBootstrap extends CollectionBasedBootstrap {
 		]
 
 		repoAlimentos => [
-			create(new Alimento("Carne", 1, kilo, new Categoria("Carnes"), new Sector("Sector Carnes"), 3))
-			create(new Alimento("Cepita", 1.50, litro, new Categoria("Lacteos"), new Sector("Sector Lacteos"), 2))
-			create(new Alimento("Tomate", 1, unidadSola, new Categoria("Verduras"), new Sector("Sector Frutas / Verduras"), 1))
+			create(new Alimento("Carne", 1.2, kilo, new Categoria("Carnes"), new Sector("Sector Carnes"), 3.0))
+			create(new Alimento("Cepita", 1.50, litro, new Categoria("Lacteos"), new Sector("Sector Lacteos"), 2.0))
+			create(new Alimento("Tomate", 1.0, unidadSola, new Categoria("Verduras"), new Sector("Sector Frutas / Verduras"), 1.0))
 		]
 	}
 

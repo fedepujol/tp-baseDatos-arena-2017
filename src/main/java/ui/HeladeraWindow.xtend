@@ -1,25 +1,15 @@
 package ui
 
 import domain.Alimento
-import domain.Categoria
+import domain.Ingrediente
 import domain.Receta
-import java.util.HashMap
-import org.uqbar.arena.layout.ColumnLayout
-import org.uqbar.arena.layout.HorizontalLayout
+import java.util.ArrayList
 import org.uqbar.arena.widgets.Button
-import org.uqbar.arena.widgets.Label
-import org.uqbar.arena.widgets.NumericField
 import org.uqbar.arena.widgets.Panel
-import org.uqbar.arena.widgets.TextBox
-import org.uqbar.arena.widgets.tables.Column
-import org.uqbar.arena.widgets.tables.Table
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import viewModel.HeladeraModel
-
-import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
-import domain.Sector
 
 class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 
@@ -32,9 +22,9 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 	}
 
 	override protected createFormPanel(Panel mainPanel) {
-		val firstPanel = new Panel(mainPanel) => [
-			layout = new ColumnLayout(2)
-		]
+//		val firstPanel = new Panel(mainPanel) => [
+//			layout = new ColumnLayout(2)
+//		]
 
 //		new Label(firstPanel) => [
 //			text = "Ingrese un alimento"
@@ -66,13 +56,12 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 //			caption = "Limpiar"
 //			onClick([|modelObject.clear])
 //		]		
+//		val secondPanel = new Panel(mainPanel) => [
+//			layout = new HorizontalLayout
+//		]
+//
+//		val gridPanel = new Panel(secondPanel)
 
-		val secondPanel = new Panel(mainPanel) => [
-			layout = new HorizontalLayout
-		]
-		
-		val gridPanel = new Panel(secondPanel)
-		
 //		val gridProcesos = new Table<Alimento>(gridPanel, typeof(Alimento)) => [
 //			numberVisibleRows = 10
 //			items <=> "alimentos"
@@ -97,19 +86,19 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 //			fixedSize = 100
 //		]
 //		
-		val buttonPanel = new Panel(secondPanel) => [
-			layout = new ColumnLayout(2)
-		]
-		
-		new Button(buttonPanel) => [
-			caption = "Agregar Alimento"
-			onClick([|this.openDialog(new AlimentoWindow(this, new Alimento("", Double.NaN, null, new Categoria("Nula"), new Sector("Nula"), Double.NaN)))])
-		]
-		
-		new Button(buttonPanel) => [
-			caption = "Recetas"
-			onClick([|this.openDialog(new RecetaWindow(this, new Receta("", "", new HashMap<Alimento, Double>)))])
-		]
+//		val buttonPanel = new Panel(secondPanel) => [
+//			layout = new ColumnLayout(2)
+//		]
+
+//		new Button(buttonPanel) => [
+//			caption = "Agregar Alimento"
+//			onClick([|this.openDialog(new AlimentoWindow(this, new Alimento("", Double.NaN, null, new Categoria("Nula"), new Sector("Nula"), Double.NaN)))])
+//		]
+//		
+//		new Button(buttonPanel) => [
+//			caption = "Recetas"
+//			onClick([|this.openDialog(new RecetaWindow(this, new Receta("", "", new ArrayList<Ingrediente>)))])
+//		]
 	}
 
 	override protected addActions(Panel actionsPanel) {
@@ -117,13 +106,26 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 //			caption = "Aceptar"
 //			onClick([|this.close()])
 //		]
-//		new Button(actionsPanel) => [
-//			caption = "Cancelar"
-//			onClick([|this.close()])
-//		]
+		new Button(actionsPanel) => [
+			caption = "Agregar Alimento"
+			onClick([|
+				this.openDialog(
+					new AlimentoWindow(this,
+						new Alimento("", null, null, null, null, null)))
+			])
+		]
+
+		new Button(actionsPanel) => [
+			caption = "Recetas"
+			onClick([|this.openDialog(new RecetaWindow(this, new Receta("", "", new ArrayList<Ingrediente>)))])
+		]
+		new Button(actionsPanel) => [
+			caption = "Salir"
+			onClick([|this.close()])
+		]
 	}
-	
-	def editarReceta(Receta unaReceta){
+
+	def editarReceta(Receta unaReceta) {
 //		this.openDialog(new EditarAlimento(this, unAlimento))
 	}
 

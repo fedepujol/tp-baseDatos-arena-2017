@@ -6,7 +6,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class RepositorioReceta {
-	int id
+	int id = 1
 	Collection<Receta> recetas = new ArrayList<Receta>
 	static var RepositorioReceta instance
 
@@ -34,5 +34,10 @@ class RepositorioReceta {
 		if (!unaReceta.esValida) {
 			throw new BusinessException("Receta invalida")
 		}
+	}
+	
+	def getIngredienteByRecetaId(Integer unId){
+		val receta = recetas.findFirst[receta | receta.id == unId]
+		receta.ingredientes
 	}
 }
