@@ -11,12 +11,16 @@ class Alimento {
 	String nombre
 	UnidadMedida unidad
 	Categoria categoria
+	Sector sector
+	double cantidadMinima
 	
-	new(String unNombre, double unaCantidad, UnidadMedida unaUnidad, Categoria unaCategoria){
+	new(String unNombre, double unaCantidad, UnidadMedida unaUnidad, Categoria unaCategoria, Sector unSector, double unaCantidadMinima ){
 		nombre = unNombre
 		cantidad = unaCantidad
 		unidad = unaUnidad
 		categoria = unaCategoria
+		sector = unSector
+		cantidadMinima = unaCantidadMinima
 	}
 	
 	def esValido() {

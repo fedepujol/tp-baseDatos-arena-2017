@@ -19,6 +19,7 @@ import org.uqbar.arena.windows.WindowOwner
 import viewModel.HeladeraModel
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import domain.Sector
 
 class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 
@@ -102,7 +103,7 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 		
 		new Button(buttonPanel) => [
 			caption = "Agregar Alimento"
-			onClick([|this.openDialog(new AlimentoWindow(this, new Alimento("", Double.NaN, null, new Categoria("Nula"))))])
+			onClick([|this.openDialog(new AlimentoWindow(this, new Alimento("", Double.NaN, null, new Categoria("Nula"), new Sector("Nula"), Double.NaN)))])
 		]
 		
 		new Button(buttonPanel) => [

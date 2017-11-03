@@ -16,6 +16,7 @@ import org.uqbar.arena.windows.WindowOwner
 import viewModel.AlimentoModel
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import domain.Sector
 
 class AlimentoWindow extends Dialog<AlimentoModel> {
 
@@ -54,11 +55,25 @@ class AlimentoWindow extends Dialog<AlimentoModel> {
 			value <=> "alimento.cantidad"
 		]
 		
+		new Label(firstPanel).text = "Limite minimo de Cantidad:"
+		new NumericField(firstPanel) => [
+			width = 100
+			value <=> "alimento.cantidadMinima"
+		]
+		
 		new Label(firstPanel).text = "Unidad"
 		new Selector<UnidadMedida>(firstPanel) => [
 			width = 100
 			value <=> "unidadSeleccionada"
 			val itemProperties = items <=> "unidades"
+			itemProperties.adapter = new PropertyAdapter(typeof(UnidadMedida), "descripcion")
+		]
+		
+		new Label(firstPanel).text = "Sector"
+		new Selector<Sector>(firstPanel) => [
+			width = 100
+			value <=> "sectorSeleccionado"
+			val itemProperties = items <=> "sectores"
 			itemProperties.adapter = new PropertyAdapter(typeof(UnidadMedida), "descripcion")
 		]
 
