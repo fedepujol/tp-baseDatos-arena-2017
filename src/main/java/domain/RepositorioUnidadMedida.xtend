@@ -9,7 +9,6 @@ class RepositorioUnidadMedida {
 	int id = 1
 	static var RepositorioUnidadMedida instance
 	Collection<UnidadMedida> unidades = new ArrayList<UnidadMedida>
-	
 
 	private new() {
 	}
@@ -35,6 +34,10 @@ class RepositorioUnidadMedida {
 		if (!unaUnidad.esValida) {
 			throw new BusinessException("Unidad de medida invalida")
 		}
+	}
+
+	def searchById(Integer unId) {
+		unidades.findFirst[unidad|unidad.id === unId]
 	}
 
 }

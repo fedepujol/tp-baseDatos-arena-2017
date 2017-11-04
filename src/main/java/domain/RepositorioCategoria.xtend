@@ -6,7 +6,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
 class RepositorioCategoria {
-	int id
+	int id = 1
 	Collection<Categoria> categorias = new ArrayList<Categoria>
 	static var RepositorioCategoria instance
 
@@ -34,5 +34,9 @@ class RepositorioCategoria {
 		if (!unaCategoria.esValida) {
 			throw new BusinessException("Categoria invalida")
 		}
+	}
+	
+	def searchById(Integer unId){
+		categorias.findFirst[categoria | categoria.id === unId]
 	}
 }

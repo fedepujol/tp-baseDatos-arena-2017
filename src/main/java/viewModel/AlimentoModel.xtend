@@ -1,8 +1,8 @@
 package viewModel
 
+//import domain.RepositorioAlimento
 import domain.Alimento
 import domain.Categoria
-import domain.RepositorioAlimento
 import domain.RepositorioCategoria
 import domain.RepositorioSector
 import domain.RepositorioUnidadMedida
@@ -11,10 +11,12 @@ import domain.UnidadMedida
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
+import domain.RepoJDBC
 
 @Observable
 @Accessors
 class AlimentoModel {
+	RepoJDBC repoJDBC
 	Alimento alimento
 	List<UnidadMedida> unidades
 	List<Categoria> categorias
@@ -26,8 +28,11 @@ class AlimentoModel {
 		categorias = RepositorioCategoria.instance.categorias.toList
 		sectores = RepositorioSector.instance.sectores.toList
 	}
-	
+
 	def crear() {
-		RepositorioAlimento.instance.create(alimento)
+		/*Prueba de persistencia en Tabla de Alimento */
+		repoJDBC = new RepoJDBC
+		repoJDBC.insertAlimento(alimento)
+//		RepositorioAlimento.instance.create(alimento)
 	}
 }

@@ -43,6 +43,7 @@ class HeladeraBootstrap extends CollectionBasedBootstrap {
 		repoCategorias => [
 			create(new Categoria("Carnes"))
 			create(new Categoria("Verduras"))
+			create(new Categoria("Frutas"))
 			create(new Categoria("Lacteos"))
 			create(new Categoria("Gaseosas"))
 		]
@@ -56,8 +57,9 @@ class HeladeraBootstrap extends CollectionBasedBootstrap {
 		
 		repoSectores => [
 			create(new Sector("Sector Carnes"))
+			create(new Sector("Sector Verduras"))
+			create(new Sector("Sector Frutas"))
 			create(new Sector("Sector Lacteos"))
-			create(new Sector("Sector Frutas / Verduras"))
 			create(new Sector("Sector Dulces"))
 		]
 
@@ -66,6 +68,7 @@ class HeladeraBootstrap extends CollectionBasedBootstrap {
 			create(new Alimento("Cepita", 1.50, litro, new Categoria("Lacteos"), new Sector("Sector Lacteos"), 2.0))
 			create(new Alimento("Tomate", 1.0, unidadSola, new Categoria("Verduras"), new Sector("Sector Frutas / Verduras"), 1.0))
 		]
+		
 	}
 
 }
