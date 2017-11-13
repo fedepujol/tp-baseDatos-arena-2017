@@ -21,7 +21,7 @@ class RepositorioReceta {
 	}
 
 	def create(Receta unaReceta) {
-		this.validateCreate(unaReceta)
+//		this.validateCreate(unaReceta)
 		if (recetas.contains(unaReceta)) {
 			throw new BusinessException("La receta ya existe")
 		}
@@ -30,12 +30,12 @@ class RepositorioReceta {
 		id++
 	}
 
-	def validateCreate(Receta unaReceta) {
-		if (!unaReceta.esValida) {
-			throw new BusinessException("Receta invalida")
-		}
-	}
-	
+//	def validateCreate(Receta unaReceta) {
+//		if (!unaReceta.esValida) {
+//			throw new BusinessException("Receta invalida")
+//		}
+//	}
+//	
 	def getIngredienteByRecetaId(Integer unId){
 		val receta = recetas.findFirst[receta | receta.id == unId]
 		receta.ingredientes

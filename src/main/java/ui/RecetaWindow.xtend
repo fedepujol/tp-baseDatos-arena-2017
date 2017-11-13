@@ -37,12 +37,12 @@ class RecetaWindow extends Dialog<RecetaModel> {
 	
 		new TextBox(firstPanel) => [
 			width = 100
-			//value <=> "example.nombre"
+			value <=> "ingrediente"
 		]
 	
 		new Button(firstPanel) => [
 			caption = "Buscar"
-			//onClick([|modelObject.search])
+			onClick([|modelObject.search])
 			setAsDefault
 			disableOnError
 		]
@@ -62,11 +62,11 @@ class RecetaWindow extends Dialog<RecetaModel> {
 			value <=> "recetaSeleccionada"
 		]
 
-		new Column<Receta>(gridProcesos) => [
-			title = "Nombre"
-			bindContentsToProperty("nombre")
-			fixedSize = 150
-		]
+//		new Column<Receta>(gridProcesos) => [
+//			title = "Nombre"
+//			bindContentsToProperty("nombre")
+//			fixedSize = 150
+//		]
 
 		new Column<Receta>(gridProcesos) => [
 			title = "Descripcion"
@@ -74,11 +74,11 @@ class RecetaWindow extends Dialog<RecetaModel> {
 			fixedSize = 120
 		]
 
-		new Column<Receta>(gridProcesos) => [
-			title = "Ingredientes"
-			bindContentsToProperty("ingredientes")
-			fixedSize = 100
-		]
+//		new Column<Receta>(gridProcesos) => [
+//			title = "Ingredientes"
+//			bindContentsToProperty("ingredientes")
+//			fixedSize = 100
+//		]
 
 	}
 

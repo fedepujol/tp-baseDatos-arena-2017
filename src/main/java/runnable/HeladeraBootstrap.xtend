@@ -36,9 +36,9 @@ class HeladeraBootstrap extends CollectionBasedBootstrap {
 			new Ingrediente(new Alimento("Tomate", 2.0, unidadSola, new Categoria("Verduras"), new Sector("Sector Frutas / Verduras"), 2.3), 0.500)
 		)
 
-		repoRecetas => [
-			create(new Receta("Receta 1", "Descripcion 1", ingrediente))
-		]
+//		repoRecetas => [
+////			create(new Receta("Receta 1", "Descripcion 1", ingrediente))
+//		]
 
 		repoCategorias => [
 			create(new Categoria("Carnes"))

@@ -4,6 +4,8 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.ResultSet
 import java.sql.Statement
+import java.util.List
+import java.util.ArrayList
 
 class RepoJDBC {
 
@@ -18,7 +20,9 @@ class RepoJDBC {
 	Connection conn
 	Statement stment
 	ResultSet rs
-
+//	List <String> ingredientes
+//	List<Receta> recetas
+	
 	// ResultSet rs2
 	new() {
 		Class.forName(JDBC_DRIVER)
@@ -86,6 +90,30 @@ class RepoJDBC {
 		this.ejecutarUpdate(sql)
 		this.cerrarQuery
 	}
+	
+	def buscarRecetas(String unAlimento){
+	 	var ArrayList<Receta> recetas = new ArrayList<Receta>
+		val sql = "select receta.Descripcion, receta.idReceta from mydb.receta inner join (receta_has_alimento, alimento) on (receta.idReceta = receta_has_alimento.Receta_idReceta and receta_has_alimento.Alimento_idAlimento = alimento.idAlimento) where alimento.Descripcion = '" + unAlimento + "';"
+		var ResultSet rs = this.ejecutarQuery(sql)
+		println(rs)
+//		rs.next()
+		while(rs.next()){
+//			println(rs.getString("Descripcion"))
+//			var receta = )
+//			println(receta)
+			recetas.add(new Receta(rs.getString("Descripcion")))
+					
+		}
+		println(recetas)
+		rs.close
+		this.cerrarQuery
+		return recetas
+		
+	}
+	
+//	def buscarIngredientes(ResultSet rs){
+//		while(rs.getString )
+//	}
 
 	def cerrarQuery() {
 		conn.close

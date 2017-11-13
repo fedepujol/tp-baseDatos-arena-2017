@@ -117,7 +117,7 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 
 		new Button(actionsPanel) => [
 			caption = "Recetas"
-			onClick([|this.openDialog(new RecetaWindow(this, new Receta("", "", new ArrayList<Ingrediente>)))])
+			onClick([|this.openDialog(new RecetaWindow(this, new Receta("")))])
 		]
 		new Button(actionsPanel) => [
 			caption = "Salir"
