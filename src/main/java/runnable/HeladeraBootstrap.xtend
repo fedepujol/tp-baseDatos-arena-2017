@@ -31,10 +31,10 @@ class HeladeraBootstrap extends CollectionBasedBootstrap {
 		val litro = new UnidadMedida("Litro")
 		val unidadSola = new UnidadMedida("Unidad")
 
-		val Collection<Ingrediente> ingrediente = new ArrayList<Ingrediente>
-		ingrediente.addAll(new Ingrediente(new Alimento("Pollo", 1.0, kilo, new Categoria("Carnes"), new Sector("Sector Carnes"), 2.2), 0.150),
-			new Ingrediente(new Alimento("Tomate", 2.0, unidadSola, new Categoria("Verduras"), new Sector("Sector Frutas / Verduras"), 2.3), 0.500)
-		)
+//		val Collection<Ingrediente> ingrediente = new ArrayList<Ingrediente>
+//		ingrediente.addAll(new Ingrediente(new Alimento("Pollo", 1.0, kilo, new Categoria("Carnes"), new Sector("Sector Carnes"), 2.2), 0.150),
+//			new Ingrediente(new Alimento("Tomate", 2.0, unidadSola, new Categoria("Verduras"), new Sector("Sector Frutas / Verduras"), 2.3), 0.500)
+//		)
 
 //		repoRecetas => [
 ////			create(new Receta("Receta 1", "Descripcion 1", ingrediente))

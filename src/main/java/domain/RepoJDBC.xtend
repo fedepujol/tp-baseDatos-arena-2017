@@ -94,6 +94,7 @@ class RepoJDBC {
 	def buscarRecetas(String unAlimento){
 	 	var ArrayList<Receta> recetas = new ArrayList<Receta>
 		val sql = "select receta.Descripcion, receta.idReceta from mydb.receta inner join (receta_has_alimento, alimento) on (receta.idReceta = receta_has_alimento.Receta_idReceta and receta_has_alimento.Alimento_idAlimento = alimento.idAlimento) where alimento.Descripcion = '" + unAlimento + "';"
+		//val sql2 ="select alimento.Descripcion from mydb.alimento inner join (receta_has_alimento, receta) on (receta.idReceta = receta_has_alimento.Receta_idReceta and receta_has_alimento.Alimento_idAlimento = alimento.idAlimento) where receta.Descripcion = '" + Pastel de Papa +"';"
 		var ResultSet rs = this.ejecutarQuery(sql)
 		println(rs)
 //		rs.next()
@@ -108,6 +109,22 @@ class RepoJDBC {
 		rs.close
 		this.cerrarQuery
 		return recetas
+		
+	}
+	
+	def buscarIngredientes(String unaReceta){
+		var ArrayList<Ingrediente> ingredientes = new ArrayList<Ingrediente>
+		val sql ="select alimento.Descripcion from mydb.alimento inner join (receta_has_alimento, receta) on (receta.idReceta = receta_has_alimento.Receta_idReceta and receta_has_alimento.Alimento_idAlimento = alimento.idAlimento) where receta.Descripcion = '" + unaReceta +"';"
+		var ResultSet rs = this.ejecutarQuery(sql)
+		println(rs)
+//		rs.next()
+		while(rs.next()){
+			ingredientes.add(new Ingrediente(rs.getString("Descripcion")))
+		}
+		println(ingredientes)
+		rs.close
+		this.cerrarQuery
+		return ingredientes
 		
 	}
 	

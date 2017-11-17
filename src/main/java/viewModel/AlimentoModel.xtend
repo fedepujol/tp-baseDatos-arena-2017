@@ -31,8 +31,9 @@ class AlimentoModel {
 
 	def crear() {
 		/*Prueba de persistencia en Tabla de Alimento */
+		alimento.validateAlimento()
 		repoJDBC = new RepoJDBC
 		repoJDBC.revisarAlimento(alimento)
-//		RepositorioAlimento.instance.create(alimento)
+//					RepositorioAlimento.instance.create(alimento)
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 import org.uqbar.commons.model.annotations.Observable
 import domain.Sector
+import domain.ImageExample
 
 @Accessors
 @Observable
@@ -16,9 +17,11 @@ class HeladeraModel {
 	Alimento alimentoSeleccionado
 	Receta recetaSeleccionada
 	List<Alimento> alimentos
+	String imagePath  
 	
 	new(){
-		alimentoSeleccionado = null	
+		alimentoSeleccionado = null
+		imagePath = new ImageExample().getImagePath()	
 	}
 	
 	def search(){

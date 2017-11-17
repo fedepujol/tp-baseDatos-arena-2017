@@ -13,6 +13,8 @@ import org.uqbar.arena.windows.WindowOwner
 import viewModel.RecetaModel
 
 import static extension org.uqbar.arena.xtend.ArenaXtendExtensions.*
+import org.uqbar.arena.layout.HorizontalLayout
+import org.uqbar.arena.bindings.NotNullObservable
 
 class RecetaWindow extends Dialog<RecetaModel> {
 
@@ -32,29 +34,33 @@ class RecetaWindow extends Dialog<RecetaModel> {
 		]
 		
 		new Label(firstPanel) => [
-			text = "Ingrese un alimento"
+			text = "Ingrese un alimento :"
+			
 		]
 	
 		new TextBox(firstPanel) => [
-			width = 100
+			width = 120
 			value <=> "ingrediente"
 		]
 	
 		new Button(firstPanel) => [
 			caption = "Buscar"
+			width = 120
 			onClick([|modelObject.search])
-			setAsDefault
-			disableOnError
+//			setAsDefault
+//			disableOnError
 		]
-
 		new Button(firstPanel) => [
 			caption = "Limpiar"
-			//onClick([|modelObject.clear])
+			width = 120
+			onClick([|modelObject.clear1])
 		]		
-		
-	
-		val secondPanel = new Panel(mainPanel) 
 
+		
+		val secondPanel = new Panel(mainPanel)  => [
+			layout = new HorizontalLayout()
+	    ]	
+	
 		
 		val gridProcesos = new Table<Receta>(secondPanel, typeof(Receta)) => [
 			numberVisibleRows = 10
@@ -71,7 +77,7 @@ class RecetaWindow extends Dialog<RecetaModel> {
 		new Column<Receta>(gridProcesos) => [
 			title = "Descripcion"
 			bindContentsToProperty("descripcion")
-			fixedSize = 120
+			fixedSize = 240
 		]
 
 //		new Column<Receta>(gridProcesos) => [
@@ -80,20 +86,40 @@ class RecetaWindow extends Dialog<RecetaModel> {
 //			fixedSize = 100
 //		]
 
+
 	}
 
 	override protected addActions(Panel actionsPanel) {
 		new Button(actionsPanel) => [
-			caption = "Cancelar"
+			caption = "Volver a la Pantalla de Inicio"
 			onClick([|this.close])
 		]
 
+//		new Button(actionsPanel) => [
+//			caption = "Aceptar"
+//			onClick([|this.accept])
+//			setAsDefault
+//		]
+		
 		new Button(actionsPanel) => [
-			caption = "Aceptar"
-			onClick([|this.accept])
-			setAsDefault
+			var elementSelected = new NotNullObservable("recetaSeleccionada")
+			caption = "Detalles de la receta"
+			onClick([|this.abrirDialogYrealizarQuery()])
+			bindEnabled(elementSelected)
 		]
+		
+		
 
+	}
+	
+	def abrirDialogYrealizarQuery() {
+		modelObject.buscarIngredientes()
+		this.openDialog(new RecetaDetallaWindow(this,modelObject.recetaSeleccionada))
+	}
+	
+	def openDialog(Dialog<?> dialog) {
+		dialog.onAccept[|modelObject.search]
+		dialog.open
 	}
 }
 

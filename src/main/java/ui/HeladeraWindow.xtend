@@ -10,6 +10,8 @@ import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.SimpleWindow
 import org.uqbar.arena.windows.WindowOwner
 import viewModel.HeladeraModel
+import org.uqbar.arena.widgets.Label
+import org.uqbar.arena.graphics.Image
 
 class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 
@@ -25,6 +27,11 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 //		val firstPanel = new Panel(mainPanel) => [
 //			layout = new ColumnLayout(2)
 //		]
+ 		new Label(mainPanel) => [
+       		bindImageToProperty("imagePath", [ imagePath |
+           	new Image(imagePath)
+       		])
+   		]
 
 //		new Label(firstPanel) => [
 //			text = "Ingrese un alimento"
@@ -113,15 +120,18 @@ class HeladeraWindow extends SimpleWindow<HeladeraModel> {
 					new AlimentoWindow(this,
 						new Alimento("", null, null, null, null, null)))
 			])
+			width = 140
 		]
 
 		new Button(actionsPanel) => [
 			caption = "Recetas"
 			onClick([|this.openDialog(new RecetaWindow(this, new Receta("")))])
+			width = 140
 		]
 		new Button(actionsPanel) => [
 			caption = "Salir"
 			onClick([|this.close()])
+			width = 140
 		]
 	}
 

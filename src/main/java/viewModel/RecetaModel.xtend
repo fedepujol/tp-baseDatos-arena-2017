@@ -9,6 +9,7 @@ import org.uqbar.commons.model.annotations.Observable
 import domain.Alimento
 import domain.RepoJDBC
 import java.sql.ResultSet
+import org.uqbar.commons.model.exceptions.UserException
 
 @Observable
 @Accessors
@@ -34,7 +35,21 @@ class RecetaModel {
 		println(ingrediente)
 		repoJDBC = new RepoJDBC
 		recetas = repoJDBC.buscarRecetas(ingrediente)
+		if (recetas.length == 0){
+			throw new UserException("No hay recetas que contengan ese ingrediente")
+		}
 //		receta = new Receta(resultado.getString("Descripcion"))
 //		resultadoIngredientes = repoJDBC.buscarIngredientes(resultado)
+	}
+	
+	def buscarIngredientes(){
+		repoJDBC = new RepoJDBC
+		ingredientes = repoJDBC.buscarIngredientes(recetaSeleccionada.descripcion)
+		println(ingredientes)
+	}
+	
+	def clear1(){
+		ingrediente = ""
+		recetas = {}
 	}
 }

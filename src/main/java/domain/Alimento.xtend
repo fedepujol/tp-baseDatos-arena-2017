@@ -23,6 +23,8 @@ class Alimento {
 		categoria = unaCategoria
 		sector = unSector
 		cantidadMinima = unaCantidadMinima
+		
+		
 	}
 
 	def validateAlimento() {
